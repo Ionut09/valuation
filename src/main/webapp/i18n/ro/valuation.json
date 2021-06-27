@@ -1,0 +1,27 @@
+{
+    "valuation": {
+        "title": "Rezultat evaluare mașină - GT Market Value",
+
+        "price-new": "Preț mașină",
+        "price-optionals": "Preț opționale",
+        "price-total": "Preț total",
+        "price-estimated": "Prețul estimat",
+
+        "km-no": "Număr kilometri",
+        "tire-attrition": "Valoare uzură anvelope",
+        "body-damages": "Daune caroserie",
+        "gpl": "Mașina prezintă instalație GPL",
+
+        "similar-ads": "Vezi anunțuri",
+
+        "extra-options": "Opțiuni extra selectate",
+
+        "depreciation-chart": "Grafic depreciere (master type vs mașină evaluată)",
+        "evaluated-car": "Mașină evaluată",
+        "legend": "Legendă",
+
+        "forecast-chart": "Grafic forecast preț",
+
+        "price-info": "Toate prețurile afișate sunt brute"
+    }
+}

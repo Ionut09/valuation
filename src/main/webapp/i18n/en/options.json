@@ -1,0 +1,29 @@
+{
+    "options": {
+        "list-price": "List price",
+        "extra-options": "Extra options value",
+        "total-value": "Total value of the car",
+        "km": "Insert the number of kilometers",
+        "km-required": "The number of km is mandatory!",
+        "tires": "Tires attrition value (example: -200 EUR)",
+        "gpl": "The car has GPL system installed",
+        "loss": "Body damages (example: -2500 EUR)",
+        "negative-values": "The values must be negative!",
+
+        "evaluate": "Evaluate car",
+
+        "standardOptions": "Standard options",
+        "extraOptions": "Extra options",
+
+        "snackbar": {
+            "text": "Total price updated to"
+        },
+
+        "confirmation": {
+            "info": "You are going to evaluate a car!",
+            "info2": "This step is irreversible! Are you sure you selected all the extra options?",
+            "yes": "Yes",
+            "no": "No"
+        }
+    }
+}

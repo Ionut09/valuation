@@ -1,0 +1,15 @@
+<jhi-wizard-vin
+    *ngIf="showVin"
+    (manualSearch)="handleManualSearch()"
+    (vinEvent)="handleVinSearch($event)">
+</jhi-wizard-vin>
+
+<jhi-wizard-options
+    *ngIf="showOptions"
+    [(state)]="stepperState">
+</jhi-wizard-options>
+
+<jhi-wizard-stepper
+    *ngIf="showStepper"
+    (stepperFinished)="handleStepperFinish($event)">
+</jhi-wizard-stepper>

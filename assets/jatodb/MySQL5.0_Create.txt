@@ -1,0 +1,255 @@
+-- MySQL 5.0 Specific Load Script    Date: 21 October 2008
+
+drop database if exists {DB_NAME};
+
+create database {DB_NAME};
+
+use {DB_NAME};
+
+CREATE TABLE equipment (
+            vehicle_id bigint NOT NULL ,
+            schema_id int NOT NULL ,
+            option_id int NOT NULL ,
+            record_id int NOT NULL ,
+            location varchar (50) NULL ,
+            data_value varchar (255) NOT NULL ,
+            `condition` text NULL 
+);
+ 
+CREATE TABLE option_build (
+            vehicle_id bigint NOT NULL ,
+            option_id int NOT NULL ,
+            rule_type int NOT NULL ,
+            `condition` text NULL ,
+            option_rule text NULL ,
+            id_902 float NULL ,
+            id_903 float NULL ,
+            id_904 float NULL ,
+            id_905 float NULL ,
+            id_100902 float NULL ,
+            id_100903 float NULL ,
+            id_100904 float NULL ,
+            id_100905 float NULL 
+);
+ 
+ 
+CREATE TABLE option_list (
+            vehicle_id bigint NOT NULL ,
+            option_id int NOT NULL ,
+            option_type varchar (10) NOT NULL ,
+            option_code varchar (255) NULL ,
+            manuf_name varchar (255) NOT NULL ,
+            id_902 float NULL ,
+            id_903 float NULL ,
+            id_904 float NULL ,
+            id_905 float NULL ,
+            id_100902 float NULL ,
+            id_100903 float NULL ,
+            id_100904 float NULL ,
+            id_100905 float NULL 
+);
+ 
+CREATE TABLE option_name (
+            vehicle_id bigint NOT NULL ,
+            language_id int NOT NULL ,
+            option_id int NOT NULL ,
+            manuf_name varchar (255) NOT NULL 
+);
+ 
+CREATE TABLE option_text (
+            vehicle_id bigint NOT NULL ,
+            language_id int NOT NULL ,
+            option_id int NOT NULL ,
+            order_id int NOT NULL ,
+            content text NOT NULL
+);
+ 
+CREATE TABLE schema_info (
+            schema_id int NOT NULL ,
+            parent_schema_id int NULL ,
+            location_schema_id int NULL ,
+            scale_of_data smallint NULL ,
+            data_type smallint NULL 
+);
+ 
+CREATE TABLE schema_text (
+            language_id int NOT NULL ,
+            schema_id int NOT NULL ,
+            data_value varchar (255) NULL ,
+            abbr_text varchar (255) NULL ,
+            full_text varchar (255) NULL 
+);
+ 
+CREATE TABLE standard_text (
+            vehicle_id bigint NOT NULL ,
+            schema_id int NOT NULL ,
+            language_id int NOT NULL ,
+            content text NULL
+);
+ 
+CREATE TABLE version (
+            vehicle_id bigint NOT NULL ,
+            id_101 int NULL ,
+            id_102 varchar (2) NULL ,
+            id_104 int NULL ,
+            id_120 int NULL ,
+            id_103 int NULL ,
+            id_113 int NULL ,
+            id_106 varchar (1) NULL ,
+            id_108 varchar (4) NULL ,
+            id_109 varchar (3) NULL ,
+            id_107 int NULL ,
+            id_26801 int NULL ,
+            id_117 varchar (50) NULL ,
+            id_111 varchar (50) NULL ,
+            id_128 varchar (50) NULL ,
+            id_112 varchar (50) NULL ,
+            id_129 varchar (50) NULL ,
+            id_130 varchar (50) NULL ,
+            id_302 varchar (50) NULL ,
+            id_131 varchar (50) NULL ,
+            id_403 varchar (1) NULL ,
+            id_402 varchar (50) NULL ,
+            id_404 varchar (50) NULL ,
+            id_405 varchar (2) NULL ,
+            id_114 varchar (50) NULL ,
+            id_602 varchar (1) NULL ,
+            id_605 varchar (1) NULL ,
+            id_603 varchar (2) NULL ,
+            id_606 varchar (2) NULL ,
+            id_604 varchar (1) NULL ,
+            id_607 varchar (2) NULL ,
+            id_608 varchar (2) NULL ,
+            id_609 varchar (50) NULL ,
+            id_6502 varchar (1) NULL ,
+            id_20602 varchar (1) NULL ,
+            id_7403 float NULL ,
+            id_15303 int NULL ,
+            id_15304 int NULL ,
+            id_8702 varchar (1) NULL ,
+            id_7502 varchar (1) NULL ,
+            id_702 varchar (2) NULL ,
+            id_901 varchar (50) NULL ,
+            id_931 varchar (50) NULL ,
+            id_951 varchar (50) NULL ,
+            id_902 float NULL ,
+            id_903 float NULL ,
+            id_904 float NULL ,
+            id_905 float NULL ,
+            id_906 float NULL ,
+            id_132 varchar (1) NULL ,
+            id_110 varchar (3) NULL ,
+            id_115 int NULL ,
+            id_125 int NULL ,
+            id_116 varchar (1) NULL ,
+            id_502 varchar (50) NULL ,
+            id_121 int NULL ,
+            id_122 int NULL ,
+            id_123 varchar (50) NULL ,
+            id_28101 varchar (50) NULL ,
+            id_28001 varchar (50) NULL ,
+            id_301 varchar (1) NULL ,
+            id_303 varchar (50) NULL ,
+            id_304 int NULL ,
+            id_316 varchar (50) NULL ,
+            id_318 float NULL ,
+            id_319 float NULL ,
+            id_317 varchar (50) NULL ,
+            id_305 varchar (50) NULL ,
+            id_306 varchar (50) NULL ,
+            id_307 int NULL ,
+            id_308 int NULL ,
+            id_309 int NULL ,
+            id_310 varchar (50) NULL ,
+            id_311 varchar (50) NULL ,
+            id_312 int NULL ,
+            id_313 int NULL ,
+            id_314 varchar (50) NULL ,
+            id_315 varchar (50) NULL ,
+            id_100901 varchar (50) NULL ,
+            id_100902 float NULL ,
+            id_100903 float NULL ,
+            id_100904 float NULL ,
+            id_100905 float NULL ,
+            id_100906 float NULL ,
+            id_174 varchar (4) NULL ,
+            id_176 varchar (4) NULL
+);
+ 
+ALTER TABLE version ADD PRIMARY KEY (vehicle_id);
+ALTER TABLE schema_info add primary key (schema_id);
+ALTER TABLE option_list ADD PRIMARY KEY (vehicle_id,option_id);
+ALTER TABLE option_name ADD PRIMARY KEY (vehicle_id,language_id,option_id);
+ALTER TABLE option_text ADD PRIMARY KEY (vehicle_id,language_id,option_id,order_id);
+ALTER TABLE equipment add primary key (vehicle_id,option_id,record_id,schema_id);
+ALTER TABLE standard_text ADD PRIMARY KEY (vehicle_id,schema_id,language_id);
+
+CREATE INDEX version_valuation on version(id_111, id_112, id_603, id_131, id_402, id_20602, id_8702, id_602, id_15304, id_108, id_903, id_104, id_113, vehicle_id);
+CREATE INDEX version_manufactures on version(id_111);
+CREATE INDEX version_models on version(id_112, id_111, id_903, id_901);
+CREATE INDEX version_bodies on version(id_603, id_111, id_112, id_602, id_903, id_901);
+CREATE INDEX version_generations on version(id_307, id_108, id_111, id_112, id_603, id_602, id_903, id_901);
+CREATE INDEX version_fuel on version(id_8702);
+CREATE INDEX version_transmission on version(id_20602);
+CREATE INDEX version_wheels on version(id_6502);
+
+CREATE INDEX standard_options on standard_text(schema_id, language_id, content(500));
+CREATE INDEX standard_options2 on standard_text(schema_id, language_id, content(500), vehicle_id);
+CREATE INDEX standard_options3 on standard_text(vehicle_id);
+
+CREATE INDEX extra_options on option_list(option_id, option_type, option_code, manuf_name, id_903);
+CREATE INDEX extra_options2 on option_list(option_id, option_type, option_code, manuf_name, id_903, vehicle_id);
+
+CREATE INDEX version1 ON version (vehicle_id, ID_106, ID_108, ID_109, ID_111, ID_112, ID_302, ID_402, ID_602, ID_603, ID_901, ID_906);
+CREATE INDEX version2 ON version (ID_111, ID_106, ID_112, vehicle_id, ID_302);
+CREATE INDEX version3 ON version (vehicle_id, id_174, id_176);
+CREATE INDEX version4 ON version (vehicle_id);
+
+CREATE INDEX option_list ON option_list (id_902);
+CREATE INDEX option_build ON option_build (vehicle_id, rule_type);
+CREATE INDEX vehicle ON equipment (vehicle_id);
+CREATE INDEX equipment_index ON equipment (schema_id, option_id, data_value);
+CREATE INDEX equipment_index2 ON equipment (vehicle_id,schema_id);
+
+CREATE INDEX lang ON schema_text (language_id);
+CREATE INDEX schema_text2 ON schema_text (schema_id,data_value);
+CREATE INDEX schema_text3 ON schema_text (schema_id,language_id,data_value);
+
+CREATE INDEX market ON market_data (vehicle_manufacturer, vehicle_model, transmission_type, engine_hp);
+CREATE INDEX market_observation on market_observation(jato_vehicle_id);
+CREATE INDEX market_observation2 on market_observation(market_data_uuid);
+
+ALTER TABLE equipment 
+            ADD CONSTRAINT FK_equipment_version 
+                        FOREIGN KEY (vehicle_id) 
+                        REFERENCES version (vehicle_id)
+                        ON DELETE CASCADE;
+ALTER TABLE option_build 
+            ADD CONSTRAINT FK_option_build_option_list
+                        FOREIGN KEY (vehicle_id,option_id) 
+                        REFERENCES option_list (vehicle_id,option_id)
+                        ON DELETE CASCADE;
+ALTER TABLE option_list 
+            ADD CONSTRAINT FK_option_list_version
+                        FOREIGN KEY (vehicle_id) 
+                        REFERENCES version (vehicle_id)
+                        ON DELETE CASCADE;
+ALTER TABLE option_name 
+            ADD CONSTRAINT FK_option_name_option_list 
+                        FOREIGN KEY (vehicle_id,option_id)
+                        REFERENCES option_list (vehicle_id,option_id)
+                        ON DELETE CASCADE;
+ALTER TABLE option_text 
+            ADD CONSTRAINT FK_option_text_option_list 
+                        FOREIGN KEY (vehicle_id,option_id) 
+                        REFERENCES option_list (vehicle_id,option_id)
+                        ON DELETE CASCADE;
+ALTER TABLE standard_text 
+            ADD CONSTRAINT FK_standard_text_version 
+                        FOREIGN KEY (vehicle_id) 
+                        REFERENCES version (vehicle_id)
+                        ON DELETE CASCADE;
+
+
+
+

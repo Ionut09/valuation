@@ -1,0 +1,88 @@
+{
+    "wizard": {
+        "title": "Identificare mașină - GT Market Value",
+        "search": "Caută",
+        "next": "Continuă",
+        "previous": "Înapoi",
+        "select": "Selectează",
+        "no-data": "Nu există date disponibile! Vă rugăm să verificați dacă pașii anteriori au fost completați cu succes!",
+
+        "vin": {
+            "search": "Căutare autovehicul",
+            "vin-number": "COD VIN",
+            "vin-search": "Caută folosind API-ul VIN Query (+1 Euro / căutare) și sari peste căutarea manuală!",
+            "vin-tooltip": "Căutarea cu VIN QUERY afișează direct toate opționalele cu care a plecat mașina din fabrică!",
+            "vin-error": "VIN invalid! Codul de indentificare trebuie să aibă 17 caractere!",
+            "vin-query-error": "A apărut o eroare în procesarea seriei de șasiu! Vă rugăm încercați din nou sau folisiți căutarea manuală!",
+
+            "manual-search-button": "Căutare manuală",
+            "vin-search-button": "Căutare cu VIN Query"
+        },
+
+        "stepper": {
+            "make": "Marcă",
+            "model": "Model",
+            "fuel": "Combustibil",
+            "body": "Caroserie",
+            "generation": "Generație",
+            "vehicle": "Vehicul"
+        },
+
+        "manufacturer": {
+            "select-make": "Selectează producătorul mașinii",
+            "make": "Producătorul mașinii",
+            "fabrication-date": "Anul și luna fabricației",
+            "registration-date": "Anul și luna primei înmatriculări",
+            "registration-date-ask": "Selectați anul și luna primei înmatriculări"
+        },
+
+        "model": {
+            "select-model": "Selectează modelul mașinii"
+        },
+
+        "fuel": {
+            "select-fuel": "Selectează combustibilul și tipul de tracțiune",
+            "fuel": "Combustibil",
+            "gearbox": "Cutie de viteze",
+            "traction": "Tracțiune",
+            "gearbox-tooltip": "Unele cutii de viteze sunt clasificate drept manuale, cum ar fi: dbl ambreaj manual secvențial"
+        },
+
+        "body": {
+            "select-body": "Selectează tipul caroseriei mașinii",
+            "doors": "uși"
+        },
+
+        "generation": {
+            "select-generation": "Selectează generația mașinii",
+            "doors": "uși",
+            "generation": "Generația"
+        },
+
+        "vehicle": {
+            "select-vehicle": "Selectează mașina",
+            "filter": "Filtrare",
+
+            "make": "Producător",
+            "model": "Model",
+            "version": "Versiune",
+            "trim": "Echipare",
+            "model-year": "An model",
+            "fuel-type": "Combustibil",
+            "transmission": "Cutie de viteze",
+            "power": "Cai putere",
+            "doors": "Număr uși",
+            "start-selling": "Începere vânzări",
+            "end-selling": "Finalizare vânzări",
+            "price": "Preț",
+
+            "popup": {
+                "review": "Verifică din nou mașina selectată!",
+                "cancel": "Selectează altă mașină",
+                "continue": "Continuă"
+            },
+
+            "no-vehicles": "Nu există mașini pentru criteriile selectate mai sus!"
+        }
+    }
+}

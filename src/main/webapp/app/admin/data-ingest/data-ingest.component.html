@@ -1,0 +1,182 @@
+<p>{{'global.data-ingest.page-title' | translate}}</p>
+
+<div style="margin-top: 20px;">
+    <!--    AUTOVIT CSV-->
+    <form [formGroup]="validation" (ngSubmit)="submit()">
+        <div class="form-group">
+            <jhi-data-ingest-upload formControlName="csvFile" [progress]="progress" [showAutovitLogo]="true"></jhi-data-ingest-upload>
+
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="hasError('csvFile', 'requiredFileType')">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.csv-alert' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="error">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.csv-error' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="lock">
+            <p class="m-0 m-auto">{{'global.data-ingest.csv-loading' | translate}}</p>
+            <mat-progress-bar mode="buffer"></mat-progress-bar>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <button
+                mat-raised-button
+                color="primary"
+                class="m-0 m-auto"
+                type="submit"
+                [disabled]="!validation.valid || lock">
+                <fa-icon [icon]="['fas', 'file-upload']"></fa-icon>
+                {{'global.data-ingest.upload-button' | translate}}
+            </button>
+        </div>
+    </form>
+
+    <br>
+    <br>
+
+    <div class="errors-container mat-elevation-z8" *ngIf="parsingErrors">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="errors">
+                <th mat-header-cell *matHeaderCellDef> {{'global.data-ingest.csv-parsing-errors' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <br>
+    <br>
+
+    <!--    AUTOVIT EXCEL-->
+    <form [formGroup]="validation3" (ngSubmit)="submit3()">
+        <div class="form-group">
+            <jhi-data-ingest-upload formControlName="csvFile3" [progress]="progress3" [showAutovitLogo]="true" [showExcelLogo]="true"></jhi-data-ingest-upload>
+
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="hasError3('csvFile3', 'requiredFileType')">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.xlsx-alert' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="error3">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.csv-error' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="lock3">
+            <p class="m-0 m-auto">{{'global.data-ingest.csv-loading' | translate}}</p>
+            <mat-progress-bar mode="buffer"></mat-progress-bar>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <button
+                mat-raised-button
+                color="primary"
+                class="m-0 m-auto"
+                type="submit"
+                [disabled]="!validation3.valid || lock">
+                <fa-icon [icon]="['fas', 'file-upload']"></fa-icon>
+                {{'global.data-ingest.upload-button' | translate}}
+            </button>
+        </div>
+    </form>
+
+    <br>
+    <br>
+
+    <div class="errors-container mat-elevation-z8" *ngIf="parsingErrors3">
+        <table mat-table [dataSource]="dataSource3">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="errors">
+                <th mat-header-cell *matHeaderCellDef> {{'global.data-ingest.csv-parsing-errors' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns3; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <!--    TRADEIN EXCEL-->
+    <form [formGroup]="validation2" (ngSubmit)="submit2()">
+        <div class="form-group">
+            <jhi-data-ingest-upload formControlName="csvFile2" [progress]="progress2"></jhi-data-ingest-upload>
+
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="hasError2('csvFile2', 'requiredFileType')">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.csv-alert' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="invalid-feedback" style="display: block;">
+                <ng-container *ngIf="error2">
+                    <div class="row">
+                        <span class="m-0 m-auto"><strong>{{'global.data-ingest.csv-error' | translate}}</strong></span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="lock2">
+            <p class="m-0 m-auto">{{'global.data-ingest.csv-loading' | translate}}</p>
+            <mat-progress-bar mode="buffer"></mat-progress-bar>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <button
+                mat-raised-button
+                color="primary"
+                class="m-0 m-auto"
+                type="submit"
+                [disabled]="!validation2.valid || lock">
+                <fa-icon [icon]="['fas', 'file-upload']"></fa-icon>
+                {{'global.data-ingest.upload-button' | translate}}
+            </button>
+        </div>
+    </form>
+
+    <br>
+    <br>
+
+    <div class="errors-container mat-elevation-z8" *ngIf="parsingErrors2">
+        <table mat-table [dataSource]="dataSource2">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="errors">
+                <th mat-header-cell *matHeaderCellDef> {{'global.data-ingest.csv-parsing-errors' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        </table>
+    </div>
+</div>

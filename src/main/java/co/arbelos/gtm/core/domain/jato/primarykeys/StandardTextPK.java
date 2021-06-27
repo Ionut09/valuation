@@ -1,0 +1,25 @@
+package co.arbelos.gtm.core.domain.jato.primarykeys;
+
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+
+@Embeddable
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class StandardTextPK implements Serializable {
+
+    @Column(name = "vehicle_id")
+    private Long vehicleId;
+
+    @Column(name = "schema_id")
+    private Integer schemaId;
+
+    @Column(name = "language_id")
+    private Integer languageId;
+}

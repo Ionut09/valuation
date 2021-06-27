@@ -1,0 +1,28 @@
+{
+    "options": {
+        "list-price": "Preț de nou",
+        "extra-options": "Opționale extra",
+        "total-value": "Total valoare mașină",
+        "km": "Introduceți numărul de km",
+        "tires": "Valoare uzură anvelope (exemplu: -200 EUR)",
+        "gpl": "Mașina prezintă instalație GPL",
+        "loss": "Daune caroserie (exemplu: -2500 EUR)",
+        "negative-values": "Valorile trebuie să fie negative!",
+
+        "evaluate": "Evaluează autovehiculul",
+
+        "standardOptions": "Opțiuni standard",
+        "extraOptions": "Opțiuni extra",
+
+        "snackbar": {
+            "text": "Preț total actualizat la"
+        },
+
+        "confirmation": {
+            "info": "Urmează să evaluezi o mașină!",
+            "info2": "Acest pas este ireversibil! Ești sigur(ă) că ai selectat toate opționalele extra?",
+            "yes": "Da",
+            "no": "Nu"
+        }
+    }
+}

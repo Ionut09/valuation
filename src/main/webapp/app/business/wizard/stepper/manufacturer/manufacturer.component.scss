@@ -1,0 +1,31 @@
+::ng-deep .mat-horizontal-content-container {
+    min-height: 60vh;
+}
+
+.hide {
+    display: none;
+}
+
+.month-picker .mat-calendar-period-button {
+    pointer-events: none;
+}
+
+.month-picker .mat-calendar-arrow {
+    display: none;
+}
+
+.full-width-input {
+    width: 100%;
+}
+
+.half-width-input {
+    width: 50%;
+}
+
+.quarter-width-input {
+    width: 25%;
+}
+
+.title {
+    margin: 32px;
+}

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{'options.confirmation.info' | translate}}</h2>
+
+<mat-dialog-content class="mat-typography">
+    <h4>{{'options.confirmation.info2' | translate}}</h4>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>{{'options.confirmation.no' | translate}}</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{'options.confirmation.yes' | translate}}</button>
+</mat-dialog-actions>

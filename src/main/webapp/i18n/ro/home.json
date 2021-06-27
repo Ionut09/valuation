@@ -1,0 +1,34 @@
+{
+    "home": {
+        "title": "GT Market Value - Evaluează valoarea reală a unei mașini",
+        "subtitle": "Aceasta este pagina ta de start",
+        "logged": {
+            "message": "Ești autentificat cu numele de utilizator \"{{username}}\"."
+        },
+        "question": "Dacă ai orice întrebări în legatură cu JHipster:",
+        "link": {
+            "homepage": "Pagina JHipster",
+            "stackoverflow": "JHipster pe Stack Overflow",
+            "bugtracker": "JHipster bug tracker",
+            "chat": "Camera de chat publică pentru JHipster",
+            "follow": "Contactează @java_hipster pe Twitter"
+        },
+        "like": "Dacă iți place JHipster nu uita să ne dai o stea pe",
+        "github": "GitHub",
+        "new-search": "Evaluare Nouă",
+        "valuation-history": "Istoric Evaluări",
+
+        "filter": "Filtrează prin evaluări",
+
+        "make": "Producător",
+        "model": "Model",
+        "version": "Versiune",
+        "trim": "Echipare",
+        "fabrication-date": "Data fabricației",
+        "registration-date": "Data primei înmatriculări",
+        "valuation-date": "Data evaluării",
+        "km": "Numărul de kilometri",
+
+        "no-valuation": "Nu există mașini evaluate!"
+    }
+}

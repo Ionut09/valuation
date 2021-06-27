@@ -1,0 +1,52 @@
+<block-ui>
+    <div class="row">
+        <div class="col-12 mb-5">
+            <h1>{{'wizard.vin.search' | translate}}</h1>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <div class="jumbotron jumbotron-fluid">
+            <h4 class="text-center mb-5">VIN QUERY</h4>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control form-control-lg" type="search"
+                                       placeholder="{{'wizard.vin.vin-number' | translate}}"
+                                       aria-label="Search" style="text-transform:uppercase" name="vin"
+                                       matTooltip="{{'wizard.vin.vin-search' | translate}}"
+                                       [(ngModel)]="vin">
+                            </div>
+                            <div *ngIf="invalidVin" class="col-md-12">
+                                <div class="alert alert-danger" role="alert">
+                                    {{'wizard.vin.vin-error' | translate}}
+                                </div>
+                            </div>
+                            <div *ngIf="errorVin" class="col-md-12">
+                                <div class="alert alert-danger" role="alert">
+                                    {{'wizard.vin.vin-query-error' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                               <div class="text-right">
+                                   <button mat-stroked-button (click)="handleManualSearch()">
+                                       <fa-icon [icon]="['fas', 'hand-point-right']"></fa-icon>
+                                       {{'wizard.vin.manual-search-button' | translate}}
+                                   </button>
+                                   <button mat-flat-button color="primary" class="pulse" (click)="handleVinQuery()" matTooltip="{{'wizard.vin.vin-tooltip' | translate}}">
+                                       <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                                       {{'wizard.vin.vin-search-button' | translate}}
+                                   </button>
+                               </div>
+                            </div>
+                        </div>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block-ui>

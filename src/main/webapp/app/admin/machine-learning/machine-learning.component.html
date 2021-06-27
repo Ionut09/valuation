@@ -1,0 +1,96 @@
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <p class="col-md-10">{{'global.machinelearning.title' | translate}}</p>
+            <button class="col-md-2" mat-raised-button color="primary"
+                    (click)="openMLManagementDialog()">ML Management</button>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <mat-progress-bar mode="indeterminate" *ngIf="trainingInProgress"></mat-progress-bar>
+
+        <mat-form-field class="col-md-6">
+            <mat-label>{{'global.machinelearning.make' | translate}}</mat-label>
+            <mat-select (selectionChange)="handleManufacturerSelection($event.value)" [disabled]="trainingInProgress">
+                <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">
+                    {{manufacturer}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+            <mat-label>{{'global.machinelearning.model' | translate}}</mat-label>
+            <mat-select (selectionChange)="handleModelSelection($event.value)" [disabled]="trainingInProgress">
+                <mat-option *ngFor="let model of models" [value]="model">
+                    {{model}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row" *ngIf="dataLoaded">
+        <ngb-alert *ngIf="data === null" [dismissible]="false" style="width: 100%;">
+            <p>{{'global.machinelearning.no-data' | translate}}</p>
+            <p>{{'global.machinelearning.no-data-info' | translate}}</p>
+        </ngb-alert>
+
+        <div class="row" *ngIf="data != null">
+            <div class="col-md-2">
+                <div class="col-md-12">
+                    <button mat-raised-button color="primary" (click)="openMasterTypeDialog()">
+                        {{'global.machinelearning.master-type' | translate}}
+                    </button>
+                </div>
+                <br>
+                <mat-card class="col-md-12 margin-16">
+                    <p matTooltip="{{rmseDescription}}">RMSE:  <strong>{{data.rmse}}</strong></p>
+                    <p matTooltip="{{varianceScore}}">{{'global.machinelearning.variance-score' | translate}}: <strong>{{data.varianceScore}}</strong></p>
+                    <p>{{'global.machinelearning.train-date' | translate}}: <strong>{{data.trainingDate}}</strong></p>
+                </mat-card>
+                <br>
+                <mat-card class="col-md-12 margin-16">
+                    <p><strong>{{'global.machinelearning.dictionary' | translate}}</strong></p>
+                    <p>Fuel Type '<strong>U</strong>': <strong>Unleaded</strong></p>
+                    <p>Fuel Type '<strong>D</strong>': <strong>Diesel</strong></p>
+                    <p>Fuel Type '<strong>E</strong>': <strong>Electric</strong></p>
+                    <p>Fuel Type '<strong>G</strong>': <strong>LPG</strong></p>
+                    <p>Fuel Type '<strong>F</strong>': <strong>E85</strong></p>
+                </mat-card>
+            </div>
+
+            <div class="col-md-10">
+                <mat-card>
+                    <div class="row">
+                        <ngb-alert *ngIf="data.varianceScore < 0.8" [dismissible]="false" style="width: 100%;">
+                            <p>{{'global.machinelearning.low-variance' | translate}}</p>
+                        </ngb-alert>
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotComparison}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotDistribuition}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotCorrelationMatrix}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotFuelTypePrice}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotFuelTypePriceYear}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotPriceKilometers}}" />
+                    </div>
+                    <div class="row">
+                        <img class="responsive" src="data:image/png;base64,{{data.plotPriceManufacturerYear}}" />
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

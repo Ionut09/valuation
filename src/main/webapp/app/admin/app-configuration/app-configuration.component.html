@@ -1,0 +1,31 @@
+<div>
+    <div>
+        <p>Depreciation of extra optionals by car segments (percentages)</p>
+    </div>
+    <br>
+    <div>
+        <mat-progress-bar mode="indeterminate" *ngIf="loadingData"></mat-progress-bar>
+        <br>
+        <div *ngFor="let item of carSegmentsDepreciations" class="row">
+            <span class="col-md-2"><strong>{{item.text}}</strong></span>
+            <mat-form-field class="col-md-2">
+                <input class="col-md-2" matInput placeholder="First Year" [value]="item.firstYear" (input)="item.firstYear = +$event.target.value">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <input class="col-md-2" matInput placeholder="Second Year" [value]="item.secondYear" (input)="item.secondYear = +$event.target.value">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <input class="col-md-2" matInput placeholder="Third Year" [value]="item.thirdYear" (input)="item.thirdYear = +$event.target.value">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <input class="col-md-2" matInput placeholder="Fourth Year" [value]="item.fourthYear" (input)="item.fourthYear = +$event.target.value">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <input class="col-md-2" matInput placeholder="Fifth Year" [value]="item.fifthYear" (input)="item.fifthYear = +$event.target.value">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" (click)="handleSaveButton()">Save</button>
+        </div>
+    </div>
+</div>

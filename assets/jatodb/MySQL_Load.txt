@@ -1,0 +1,33 @@
+-- FOR SOME MARIADB VERSION:
+SET GLOBAL local_infile=1;
+
+-- Data Loading
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_version_utf8.txt" IGNORE INTO TABLE version IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_equipment_utf8.txt" IGNORE INTO TABLE equipment IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_option_list_utf8.txt" IGNORE INTO TABLE option_list IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_option_build_utf8.txt" IGNORE INTO TABLE option_build IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_option_name_utf8.txt" IGNORE INTO TABLE option_name IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_option_text_utf8.txt" IGNORE INTO TABLE option_text IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_schema_info_utf8.txt" IGNORE INTO TABLE schema_info IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_schema_text_utf8.txt" IGNORE INTO TABLE schema_text IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/sscro/SSCRO_standard_text_utf8.txt" IGNORE INTO TABLE standard_text IGNORE 1 LINES;
+
+-- Commercials
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_version_utf8.txt" IGNORE INTO TABLE version IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_equipment_utf8.txt" IGNORE INTO TABLE equipment IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_option_list_utf8.txt" IGNORE INTO TABLE option_list IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_option_build_utf8.txt" IGNORE INTO TABLE option_build IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_option_name_utf8.txt" IGNORE INTO TABLE option_name IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_option_text_utf8.txt" IGNORE INTO TABLE option_text IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_schema_info_utf8.txt" IGNORE INTO TABLE schema_info IGNORE 1 LINES; //problem
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_schema_text_utf8.txt" IGNORE INTO TABLE schema_text IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/commercial/NSCRO_standard_text_utf8.txt" IGNORE INTO TABLE standard_text IGNORE 1 LINES;
+
+-- Data Loading DE
+
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/version_utf8.txt" IGNORE INTO TABLE version_de IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/equipment_utf8.txt" IGNORE INTO TABLE equipment_de IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/option_list_utf8.txt" IGNORE INTO TABLE option_list_de IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/comms_version_utf8.txt" IGNORE INTO TABLE version_de IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/comms_equipment_utf8.txt" IGNORE INTO TABLE equipment_de IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE "/home/lucian.rosu/DE_DATA/data/comms_option_list_utf8.txt" IGNORE INTO TABLE option_list_de IGNORE 1 LINES;

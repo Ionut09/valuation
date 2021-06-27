@@ -1,0 +1,21 @@
+mat-card {
+    margin-bottom: 32px;
+    max-width: 276px;
+    min-width: 128px;
+}
+
+mat-card {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+mat-card-content {
+    display: flex;
+    flex: 1;
+}
+
+img {
+    width: 95%;
+    margin: 0 auto;
+}

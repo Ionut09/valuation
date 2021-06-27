@@ -1,0 +1,25 @@
+{
+    "valuation": {
+        "title": "Car evaluation result - GT Market Value",
+
+        "price-new": "Price as new car",
+        "price-optionals": "Price of extra optionals",
+        "price-total": "Total price",
+        "price-estimated": "Estimated price",
+
+        "km-no": "Kilometers number",
+        "tire-attrition": "Tire attrition value",
+        "body-damages": "Body damages",
+        "gpl": "The car has GPL system installed",
+
+        "similar-ads": "Check market ads",
+
+        "extra-options": "Selected extra options",
+
+        "depreciation-chart": "Depreciation chart (master type vs evaluated car)",
+        "evaluated-car": "Evaluated car",
+        "legend": "Legend",
+
+        "price-info": "All prices are gross"
+    }
+}

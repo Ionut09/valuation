@@ -1,0 +1,57 @@
+<div class="row title">
+    <div class="col-12 text-center">
+        <h1 jhiTranslate="wizard.manufacturer.select-make">Select the manufacturer</h1>
+    </div>
+</div>
+
+<div class="text-center mb-5">
+    <div>
+            <mat-form-field class="half-width-input">
+                <input type="text"
+                       placeholder="{{'wizard.manufacturer.make' | translate}}"
+                       matInput
+                       [formControl]="manufacturerControl"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='chosenManufacturer()'>
+                    <mat-option *ngFor="let manufacturer of filteredManufacturers | async"
+                                [value]="manufacturer">
+                        {{manufacturer}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="half-width-input">
+            <input matInput
+                   [matDatepicker]="dp1"
+                   placeholder="{{'wizard.manufacturer.fabrication-date' | translate}}"
+                   [formControl]="manufacturingDateControl"
+                   (focus)="dp1.open()">
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1
+                            (yearSelected)="chosenManufacturingYearHandler($event)"
+                            (monthSelected)="chosenManufacturingMonthHandler($event, dp1)"
+                            startView="multi-year"
+                            panelClass="month-picker">
+            </mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="half-width-input">
+            <input matInput
+                   [matDatepicker]="dp2"
+                   placeholder="{{'wizard.manufacturer.registration-date' | translate}}"
+                   [formControl]="registrationDateControl"
+                   (focus)="dp2.open()">
+            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2
+                            (yearSelected)="chosenRegistrationYearHandler($event)"
+                            (monthSelected)="chosenRegistrationMonthHandler($event, dp2)"
+                            startView="multi-year"
+                            panelClass="month-picker">
+            </mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>

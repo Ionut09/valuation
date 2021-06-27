@@ -1,0 +1,32 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/valuation/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name test-valuation.gtestimate.ro;
+
+    access_log /var/www/valuation/logs/access.log;
+    error_log /var/www/valuation/logs/error.log;
+
+    location / {
+            try_files $uri $uri/ =404;
+    }
+
+    location /api {
+       proxy_pass http://localhost:8080;
+    }
+
+	location /management {
+	   proxy_pass http://localhost:8080;
+	}
+
+	location /swagger-resources {
+	   proxy_pass http://localhost:8080;
+	}
+
+	location /v2 {
+	   proxy_pass http://localhost:8080;
+	}
+}

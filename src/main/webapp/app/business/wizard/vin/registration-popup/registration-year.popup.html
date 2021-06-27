@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{'wizard.manufacturer.registration-date-ask' | translate}}</h2>
+
+<mat-dialog-content class="mat-typography">
+    <mat-form-field style="width: 100%">
+        <input matInput
+               [matDatepicker]="dp2"
+               placeholder="{{'wizard.manufacturer.registration-date' | translate}}"
+               [formControl]="registrationDateControl"
+               (focus)="dp2.open()">
+        <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+        <mat-datepicker #dp2
+                        (yearSelected)="chosenRegistrationYearHandler($event)"
+                        (monthSelected)="chosenRegistrationMonthHandler($event, dp2)"
+                        startView="multi-year"
+                        panelClass="month-picker">
+        </mat-datepicker>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="handleCloseButton()" cdkFocusInitial>{{'wizard.next' | translate}}</button>
+</mat-dialog-actions>

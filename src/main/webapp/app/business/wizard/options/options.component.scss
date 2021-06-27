@@ -1,0 +1,36 @@
+.custom-control.custom-checkbox {
+    padding-left: 0;
+}
+
+label.custom-control-label {
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+label.custom-control-label::before,
+label.custom-control-label::after {
+    left: auto;
+    right: 20px;
+    top: 16px;
+}
+
+::ng-deep .card-body {
+    padding: 0;
+}
+
+::ng-deep .card .btn-link {
+    padding-left: 0;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    text-decoration: none;
+    color: #212529;
+}
+
+::ng-deep .mat-checkbox-layout {
+    white-space: normal !important;
+}
+
+.eval-button {
+    margin-left: 14px;
+}

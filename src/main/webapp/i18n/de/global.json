@@ -1,0 +1,166 @@
+{
+    "global": {
+        "title": "Valuation",
+        "browsehappy": "Sie benutzen einen <strong>veralteten</strong> Browser. Bitte <a href=\"http://browsehappy.com/?locale=de/\">aktualisieren Sie Ihren Browser</a>, um die Benutzerfreundlichkeit zu erhöhen.",
+        "data-ingest": {
+            "page-title": "Data Ingestion",
+            "file-select": "Select a CSV file",
+            "file-drop": "or drop the file here",
+            "file-select-excel": "Select the XLSX file",
+            "xlsx-alert": "Only .XLSX are allowed!",
+            "upload-button": "Upload the file",
+            "csv-alert": "Only files in .CSV format are allowed",
+            "csv-success": "The file was successfully uploaded!",
+            "csv-error": "The file was not uploaded! Errors might exist!",
+            "csv-loading": "The file is being processed on the server!",
+            "csv-parsing-errors": "Errors during CSV parsing"
+        },
+        "machinelearning": {
+            "title": "Model training results (Machine Learning)",
+            "make": "Car manufacturer",
+            "model": "Car model",
+            "no-data": "No enough data in market observation for algorithm training!",
+            "no-data-info": "For this model evaluation, a price depreciation based on model's class was used!",
+            "master-type": "Check 'Master Type'",
+            "variance-score": "Variance Score",
+            "train-date": "Training Date",
+            "dictionary": "Dictionary",
+            "low-variance": "The Variance Score for this model is too low (minimum 0.9 accepted = 90% minimum accuracy), so for estimating the price of this model, the calculation of the depreciation on the car class will be used! A small score is determined by a small number of elements in market observation in order to create a mathematical model and train the Machine Learning algorithm."
+        },
+        "raport": {
+            "download": "Download Report"
+        },
+        "menu": {
+            "home": "Startseite",
+            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "entities": {
+                "main": "Entitäten",
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+            },
+            "account": {
+                "main": "Zugang",
+                "settings": "Einstellungen",
+                "password": "Passwort",
+                "sessions": "Sitzungen",
+                "login": "Anmelden",
+                "logout": "Abmelden",
+                "register": "Registrierung"
+            },
+            "admin": {
+                "main": "Administration",
+                "userManagement": "Benutzerverwaltung",
+                "tracker": "Benutzer Aktivitäten",
+                "metrics": "Metriken",
+                "health": "Status",
+                "configuration": "Konfiguration",
+                "logs": "Protokoll",
+                "audits": "Audits",
+                "apidocs": "API",
+                "data-ingest": "Data Ingest",
+                "database": "Datenbank",
+                "machine-learning": "Machine Learning",
+                "app-config": "Application Configuration",
+                "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+            },
+            "language": "Sprache"
+        },
+        "form": {
+            "username": "Benutzername",
+            "username.placeholder": "Ihr Benutzername",
+            "currentpassword": "Aktuelles Passwort",
+            "currentpassword.placeholder": "Aktuelles Passwort",
+            "newpassword": "Neues Passwort",
+            "newpassword.placeholder": "Neues Passwort",
+            "confirmpassword": "Neues Passwort bestätigen",
+            "confirmpassword.placeholder": "Bestätigen Sie Ihr neues Passwort",
+            "email": "Email Adresse",
+            "email.placeholder": "Ihre Email Adresse"
+        },
+        "messages": {
+            "info": {
+                "authenticated": {
+                    "prefix": "Wenn Sie sich ",
+                    "link": "anmelden",
+                    "suffix": " möchten, versuchen Sie es mit <br/>- Administrator (Name=\"admin\" und Passwort=\"admin\")<br/>- Benutzer (Name=\"user\" und Passwort=\"user\")."
+                },
+                "register": {
+                    "noaccount": "Sie haben noch keinen Zugang?",
+                    "link": "Registrieren Sie sich"
+                }
+            },
+            "error": {
+                "dontmatch": "Das bestätigte Passwort entspricht nicht dem neuen Passwort!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "Ein neues Passwort wird benötigt.",
+                    "minlength": "Das neue Passwort muss mindestens 5 Zeichen lang sein",
+                    "maxlength": "Das neue Passwort darf nicht länger als 50 Zeichen sein",
+                    "strength": "Passwortstärke:"
+                },
+                "confirmpassword": {
+                    "required": "Sie müssen das Passwort bestätigen.",
+                    "minlength": "Das bestätigte Passwort muss mindestens 5 Zeichen lang sein",
+                    "maxlength": "Das bestätigte Passwort darf nicht länger als 50 Zeichen sein"
+                },
+                "email": {
+                    "required": "Ihre Email Adresse wird benötigt.",
+                    "invalid": "Ihre Email Adresse ist ungültig.",
+                    "minlength": "Ihre Email Adresse muss mindestens 5 Zeichen lang sein",
+                    "maxlength": "Ihre Email Adresse darf nicht länger als 50 Zeichen sein"
+                }
+            }
+        },
+        "field": {
+            "id": "ID"
+        },
+        "ribbon": {
+            "dev": "Development"
+        },
+        "item-count": "Ergebnis {{first}} - {{second}} von {{total}} Elemente."
+    },
+    "entity": {
+        "action": {
+            "addblob": "Blob hinzufügen",
+            "addimage": "Bild hinzufügen",
+            "back": "Zurück",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "edit": "Bearbeiten",
+            "open": "Öffnen",
+            "save": "Speichern",
+            "view": "Details"
+        },
+        "detail": {
+            "field": "Feld",
+            "value": "Wert"
+        },
+        "delete": {
+            "title": "Löschen bestätigen"
+        },
+        "validation": {
+            "required": "Dieses Feld wird benötigt.",
+            "minlength": "Dieses Feld muss mind. {{min}} Zeichen lang sein.",
+            "maxlength": "Dieses Feld darf max. {{max}} Zeichen lang sein.",
+            "min": "Dieses Feld muss größer als {{min}} sein.",
+            "max": "Dieses Feld muss kleiner als {{max}} sein.",
+            "minbytes": "Dieses Feld sollte mehr als {{min}} bytes haben.",
+            "maxbytes": "Dieses Feld sollte nicht mehr als {{max}} bytes haben.",
+            "pattern": "Dieses Feld muss das Muster {{pattern}} erfüllen.",
+            "number": "Dieses Feld muss eine Zahl sein.",
+            "datetimelocal": "Dieses Feld muss eine Datums- und Zeitangabe enthalten."
+        }
+    },
+    "error": {
+        "internalServerError": "Interner Serverfehler",
+        "server.not.reachable": "Server ist nicht erreichbar",
+        "url.not.found": "Nicht gefunden",
+        "NotNull": "Feld {{fieldName}} kann nicht leer sein!",
+        "Size": "Feld {{fieldName}} erfüllt nicht die minimalen/maximalen Voraussetzungen!",
+        "userexists": "Benutzername bereits vergeben!",
+        "emailexists": "Email wird bereits verwendet!",
+        "idexists": "Ein neuer {{entityName}} kann noch keine ID haben",
+        "idnull": "Ungültige ID"
+    },
+    "footer": "&copy; GTM Managing Services S.R.L"
+}

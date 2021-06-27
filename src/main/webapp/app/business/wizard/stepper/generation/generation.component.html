@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-12 mb-5">
+        <h1>{{'wizard.generation.select-generation' | translate}}</h1>
+    </div>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+
+<div *ngIf="!dataLoaded">
+    <div class="alert alert-danger" role="alert">
+        {{'wizard.no-data' | translate}}
+    </div>
+</div>
+
+<div
+    *ngIf="state?.model?.model"
+    fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <div class="col-12" *ngIf="dataLoaded && generations?.length === 0">
+        <div class="alert alert-primary" role="alert">
+            {{'wizard.vehicle.no-vehicles' | translate}}
+        </div>
+    </div>
+
+    <ng-container *ngFor="let generation of generations">
+        <mat-card class="model-card" fxFlex="0 1 calc(33.3%)">
+            <mat-card-header>
+                <mat-card-title>{{generation.manufacturer}} {{generation.model}}</mat-card-title>
+                <mat-card-subtitle>
+                    {{generation.minPrice * 1.19 | currency: generation.currency : 'symbol-narrow':'1.0-2'}} - {{generation.maxPrice * 1.19 | currency: generation.currency : 'symbol-narrow':'1.0-2'}} brut
+                </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image
+                 src="{{getImageUrl(state.body)}}"
+                 onError="this.src='../../../../../content/images/404/car-image-not-available.jpg';"
+                 alt="Car model image">
+            <mat-card-content>
+                <span style="margin-left: 16px;"><strong>{{'wizard.generation.generation' | translate}} {{generation.generation}}</strong> - {{generation.modelYear}}</span>
+                <br>
+                <span style="margin-left: 16px;"><strong>{{generation.body}}</strong> - {{generation.doorsNo}} {{'wizard.generation.doors' | translate}}</span>
+            </mat-card-content>
+            <mat-card-actions>
+                <button
+                    mat-stroked-button
+                    (click)="handleGenerationSelection(generation)"
+                    jhiTranslate="wizard.select">
+                    Select
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+</div>

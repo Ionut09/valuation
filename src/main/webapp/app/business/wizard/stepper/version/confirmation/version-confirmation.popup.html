@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{'wizard.vehicle.popup.review' | translate}}</h2>
+<mat-dialog-content class="mat-typography">
+    <h3><strong> {{state.manufacturer}} {{state.model}} </strong></h3>
+
+    <h3><strong>{{'wizard.vehicle.version' | translate}}</strong></h3>
+    <p>{{state.version}}</p>
+
+    <h3><strong>{{'wizard.vehicle.trim' | translate}}</strong></h3>
+    <p>{{state.trimLevel}}</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3><strong>{{'wizard.vehicle.transmission' | translate}}</strong></h3>
+            <p>{{state.transmission}}</p>
+        </div>
+
+        <div class="col-md-6">
+            <h3><strong>{{'wizard.vehicle.doors' | translate}}</strong></h3>
+            <p>{{state.noOfDoors}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3><strong>{{'wizard.vehicle.fuel-type' | translate}}</strong></h3>
+            <p>{{state.fuelType}}</p>
+        </div>
+
+        <div class="col-md-6">
+            <h3><strong>{{'wizard.vehicle.power' | translate}}</strong></h3>
+            <p>{{state.powerHP}} HP</p>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close jhiTranslate="wizard.vehicle.popup.cancel" class="mr-2">Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial jhiTranslate="wizard.vehicle.popup.continue">Continue</button>
+</mat-dialog-actions>

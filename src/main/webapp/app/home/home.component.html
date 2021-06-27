@@ -1,0 +1,87 @@
+<div class="row">
+    <div *ngIf="isAuthenticated()" class="container-fluid">
+        <div class="row mb-5">
+            <div class="col-md-6 col-sm-6">
+                <h1>{{'home.valuation-history' | translate}}</h1>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <button mat-raised-button color="primary" class="float-right pulse" (click)="navigateToWizard()">
+                    <fa-icon [icon]="['fas', 'plus-square']"></fa-icon>
+                    {{'home.new-search' | translate}}
+                </button>
+            </div>
+        </div>
+
+        <mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field style="width: 100%;" *ngIf="!(dataSource?.data?.length === 0)">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'wizard.vehicle.filter' | translate}}">
+                </mat-form-field>
+
+                <table mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="manufacturer">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.make' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleDTO.manufacturer}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="model">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.model' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleDTO.model}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="version">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.version' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleDTO.version}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="trim">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.trim' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleDTO.trimLevel}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fabricationDate">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.fabrication-date' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.fabricationDate | date:'MM/yyyy'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="registrationDate">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.registration-date' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.registrationDate | date:'MM/yyyy'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="valuationDate">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.valuation-date' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.valuationDate | date:'dd/MM/yyyy'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="numberOfKilometers">
+                        <th mat-header-cell *matHeaderCellDef> {{'home.km' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.numberOfKilometers}} km</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="vehicleId">
+                        <th mat-header-cell *matHeaderCellDef> Car Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.valuation.vehicleId}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="handelValuationSelection(row)"></tr>
+                </table>
+                <br>
+                <div class="col-12" *ngIf="dataSource?.data?.length === 0">
+                    <div class="alert alert-primary" role="alert">
+                        {{'home.no-valuation' | translate}}
+                    </div>
+                </div>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

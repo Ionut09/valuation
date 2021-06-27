@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-12 mb-5">
+        <h1>{{'wizard.fuel.select-fuel' | translate}}</h1>
+    </div>
+</div>
+
+<div *ngIf="!state?.model?.model">
+    <div class="alert alert-danger" role="alert">
+        {{'wizard.no-data' | translate}}
+    </div>
+</div>
+
+<div *ngIf="state?.model?.model">
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                <img class="img-fluid"
+                     style="max-height: 300px;"
+                     src="{{getImageUrl()}}"
+                     onError="this.src='../../../../../content/images/404/car-image-not-available.jpg';">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col pb-4">
+            <div class="text-center">
+                <h2>{{state.model.model}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 pb-4">
+            <div class="text-center">
+                <div class="icon-fuel mb-2"></div>
+                <p><strong>{{'wizard.fuel.fuel' | translate}}</strong></p>
+                <ul class="list-group text-left">
+                    <li class="list-group-item" *ngFor="let fuelType of allFuelTypes">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"
+                                   class="custom-control-input"
+                                   [id]="fuelType"
+                                   (change)="handleFuelCheck(fuelType)">
+                            <label class="custom-control-label" [for]="fuelType">{{fuelType}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 pb-4">
+            <div class="text-center">
+                <div class="icon-gearbox mb-2"></div>
+                <p><strong>{{'wizard.fuel.gearbox' | translate}}</strong></p>
+                <ul class="list-group text-left">
+                    <li class="list-group-item" *ngFor="let transmission of allTransmissions">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                   [id]="transmission"
+                                   (change)="handleTransmissionCheck(transmission)"
+                                   [disabled]="isTransmissionDisabled(transmission)">
+                            <label class="custom-control-label" [for]="transmission" matTooltip="{{'wizard.fuel.gearbox-tooltip' | translate}}" [matTooltipDisabled]="transmission !== 'Manual'">{{transmission}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 pb-4">
+            <div class="text-center">
+                <div class="icon-traction mb-2"></div>
+                <p><strong>{{'wizard.fuel.traction' | translate}}</strong></p>
+                <ul class="list-group text-left">
+                    <li class="list-group-item" *ngFor="let drivenWheels of allDrivenWheels">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                   [id]="drivenWheels"
+                                   (change)="handleDrivenWheelsCheck(drivenWheels)"
+                                   [disabled]="isDrivenWheelDisabled(drivenWheels)">
+                            <label class="custom-control-label" [for]="drivenWheels">{{drivenWheels}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <br />
+        <mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+        <br />
+        <br />
+    </div>
+</div>

@@ -1,0 +1,185 @@
+<block-ui>
+<div *ngIf="!dataLoaded">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="dataLoaded" id="valuation">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="mb-4">{{valuation.vehicleDTO.manufacturer}} {{valuation.vehicleDTO.model}} {{valuation.vehicleDTO.version}} {{valuation.vehicleDTO.modelYear}}, {{valuation.valuation.numberOfKilometers}} KM</h1>
+        </div>
+        <div class="col-md-2">
+            <button mat-raised-button color="primary" class="float-right pulse" (click)="navigateToWizard()">
+                <fa-icon [icon]="['fas', 'plus-square']"></fa-icon>
+                {{'home.new-search' | translate}}
+            </button>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <img src="{{getImageUrl()}}"
+                 onError="this.src='../../../../../content/images/404/car-image-not-available.jpg';"
+                 alt="Car model image"
+                 class="img-fluid">
+            <div class="container-fluid">
+                <mat-form-field appearance="outline" class="col-md-12">
+                    <mat-label>{{'valuation.km-no' | translate}}</mat-label>
+                    <input matInput type="number" value="{{valuation.valuation.numberOfKilometers}}" readonly>
+                    <mat-icon matSuffix>directions_car</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-md-12">
+                    <mat-label>{{'valuation.tire-attrition' | translate}}</mat-label>
+                    <input matInput type="number" [value]="valuation.valuation.attritionValue" readonly>
+                    <span matSuffix>&euro;</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-md-12">
+                    <mat-label>{{'valuation.body-damages' | translate}}</mat-label>
+                    <input matInput type="number" [value]="valuation.valuation.bodyDamageValue" readonly>
+                    <span matSuffix>&euro;</span>
+                </mat-form-field>
+
+                <mat-checkbox class="col-md-12" [checked]="valuation.valuation.gpl" disabled="true">
+                    {{'valuation.gpl' | translate}}
+                </mat-checkbox>
+            </div>
+            <div class="container-fluid">
+
+                <div class="row mt-3 mb-3" style="padding-left: 30px;">
+                    <div class="col-md-6 nopadding">
+                        <h5 class="text-left">{{'valuation.price-new' | translate}} :</h5>
+                        <h5 class="text-left">{{'valuation.price-optionals' | translate}} :</h5>
+                        <h5 class="text-left">{{'valuation.price-total' | translate}} :</h5>
+                        <hr>
+                        <h5 class="text-left mt-3 mb-0">Trade-in price: </h5>
+                        <h5 class="text-left text-success mt-3 mb-0">Offer price: </h5>
+                        <h5 class="text-left text-success mt-3 mb-0">Retail price: </h5>
+
+                        <small class="text-success">{{valuation.valuation.valuationDate | date:'dd-MM-yyyy'}}</small>
+                        <br>
+                        <small><i>{{'valuation.price-info' | translate}}</i></small>
+                    </div>
+                    <div class="col-md-6 nopadding">
+                        <h5 class="text-left spinner-black"><strong>
+                            <span>{{valuation.valuation.priceAsNew * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                        <h5 class="text-left spinner-black"><strong>
+                            <span>{{valuation.valuation.extraOptionsPrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                        <h5 class="text-left spinner-black"><strong>
+                            <span>{{valuation.valuation.priceAsNew * 1.19 + (valuation.valuation.extraOptionsPrice * 1.19) | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                        <hr>
+                        <h5 class="text-left mt-3 mb-3"><strong>
+                            <mat-spinner [diameter]="25" *ngIf="valuationResult === 0"></mat-spinner>
+                            <span *ngIf="valuationResult !== 0">{{tradeInPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                        <h5 class="text-left text-success mt-3 mb-3 spinner-green"><strong>
+                            <mat-spinner [diameter]="25" *ngIf="valuationResult === 0"></mat-spinner>
+                            <span *ngIf="valuationResult !== 0">{{offerPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                        <h5 class="text-left text-success mt-3 mb-3 spinner-green"><strong>
+                            <mat-spinner [diameter]="25" *ngIf="valuationResult === 0"></mat-spinner>
+                            <span *ngIf="valuationResult !== 0">{{retailPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</span>
+                        </strong></h5>
+                    </div>
+                </div>
+                <div class="row" style="padding-left: 16px;">
+                    <div class="col-md-5">
+                        <button mat-raised-button color="primary" (click)="downloadPDF()" class="pulse">
+                            <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
+                            {{'global.raport.download' | translate}}
+                        </button>
+                    </div>
+
+                    <div class="col-md-5 col-md-offset-2">
+                        <button mat-raised-button color="primary" (click)="handleSimilarAdsClick()">
+                            <fa-icon [icon]="['fas', 'globe-europe']"></fa-icon>
+                            {{'valuation.similar-ads' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="chart-wrapper row">
+                <h5 class="col-md-12">{{'valuation.depreciation-chart' | translate}}</h5>
+
+                <div class="col-md-12" *ngIf="showChart">
+                    <x-chartist
+                        [type]="type"
+                        [data]="data"
+                        [options]="options"
+                        [events]="events"
+                    ></x-chartist>
+                    <br>
+                    <h5>{{'valuation.legend' | translate}}: </h5>
+                    <p><svg height="30" width="30"><circle cx="15" cy="15" r="10" fill="#3f51b5" /></svg> Master Type </p>
+                    <p><svg height="30" width="30"><circle cx="15" cy="15" r="10" fill="#28a745" /></svg> {{'valuation.evaluated-car' | translate}}</p>
+                </div>
+
+                <img class="col-md-12" style="height: auto; max-width: 100%;" *ngIf="!showChart" src="../../../content/images/404/chart-image-not-available.png"/>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
+
+            <div class="chart-wrapper row">
+                <h5 class="col-md-12">{{'valuation.forecast-chart' | translate}}</h5>
+
+                <div class="col-md-12" *ngIf="showChart">
+                    <x-chartist
+                        [type]="type"
+                        [data]="forecastData"
+                        [options]="options"
+                        [events]="events"
+                    ></x-chartist>
+                </div>
+
+                <img class="col-md-12" style="height: auto; max-width: 100%;" *ngIf="!showChart" src="../../../content/images/404/chart-image-not-available.png"/>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-top: 128px;" *ngIf="selectedExtraOptions != null && selectedExtraOptions.length > 0">
+                <h5 class="col-md-12 text-left">{{'valuation.extra-options' | translate}}:</h5>
+                <mat-list class="col-md-12" role="list">
+                    <mat-list-item role="listitem" *ngFor="let item of selectedExtraOptions">{{item.optionText}} - {{item.optionPrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} </mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="false">
+        <div class="col">
+            <h4>{{'valuation.similar-ads' | translate}} :</h4>
+            <div *ngIf="!similarAdsLoaded">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+            <div class="list-group" *ngIf="similarAdsLoaded">
+                <a href="{{getAdUrl(ads)}}" class="list-group-item list-group-item-action" *ngFor="let ads of similarAds" target="_blank">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><strong>{{ads.vehicleManufacturerName}} {{ads.vehicleModelName}}</strong></h5>
+                        <h5 class="mb-1"><strong>€ {{ads.price}} / BRUT</strong></h5>
+                    </div>
+                    <div class="d-flex mt-1 w-100 justify-content-between">
+                        <div class="d-inline-flex"><p class="font-weight-normal mr-3">{{ads.vehicleManufactoringYear}}</p>
+                            <p class="font-weight-normal">∙</p>
+                            <p class="font-weight-normal mr-3 ml-3">{{ads.numberOfKm}}</p>
+                            <p class="font-weight-normal">∙</p>
+                            <p class="font-weight-normal mr-3 ml-3">{{ads.engineHP}} CP</p>
+                            <p class="font-weight-normal">∙</p>
+                            <p class="font-weight-normal ml-3">{{ads.adDate}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</block-ui>

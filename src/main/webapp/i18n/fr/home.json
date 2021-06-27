@@ -1,0 +1,34 @@
+{
+    "home": {
+        "title": "GT Market Value - Evaluate a car's true value",
+        "subtitle": "Ceci est votre page d'accueil",
+        "logged": {
+            "message": "Vous êtes connecté en tant que \"{{username}}\"."
+        },
+        "question": "Si vous avez des questions à propos de JHipster :",
+        "link": {
+            "homepage": "Page d'accueil de JHipster",
+            "stackoverflow": "JHipster sur Stack Overflow",
+            "bugtracker": "JHipster bug tracker",
+            "chat": "JHipster public chat room",
+            "follow": "Suivez @java_hipster sur Twitter"
+        },
+        "like": "Si vous aimez JHipster, donnez nous une étoile sur",
+        "github": "GitHub ",
+        "new-search": "New Evaluation",
+        "valuation-history": "Valuation History",
+
+        "filter": "Filter through valuations",
+
+        "make": "Make",
+        "model": "Model",
+        "version": "Version",
+        "trim": "Trim",
+        "fabrication-date": "Fabrication date",
+        "registration-date": "First registration date",
+        "valuation-date": "Valuation date",
+        "km": "Number of kilometers",
+
+        "no-valuation": "There are no valuations available!"
+    }
+}

@@ -1,0 +1,125 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+logging:
+    level:
+        ROOT: DEBUG
+        io.github.jhipster: DEBUG
+        co.arbelos.gtm.valuation: DEBUG
+
+spring:
+    application:
+        name: valuation
+    cache:
+        type: simple
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:log4jdbc:mysql://49.12.15.232:3306/valuation?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&reWriteBatchedInserts=true
+        username: dev777
+        password: ZXNsaxXVS231XSAPPA
+        hikari:
+            poolName: Hikari
+            auto-commit: false
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.connection.provider_disables_autocommit: true
+            hibernate:
+                jdbc:
+                    batch_size: 50
+                    batch_versioned_data: true
+                cache:
+                    use_second_level_cache: true
+                    cache.use_query_cache: true
+                generate_statistics: true
+                order_inserts: true
+                order_updates: true
+        generate-ddl: true
+    liquibase:
+        contexts: test
+    mail:
+        host: localhost
+    messages:
+        basename: i18n/messages
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: HTML
+
+
+server:
+    port: 10344
+    address: localhost
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+    async:
+        core-pool-size: 1
+        max-pool-size: 50
+        queue-capacity: 10000
+    # To test logstash appender
+    logging:
+        logstash:
+            enabled: true
+            host: localhost
+            port: 5000
+            queue-size: 512
+    mail:
+        from: valuation@localhost
+        base-url: http://127.0.0.1:8080
+    security:
+        authentication:
+            jwt:
+                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+                base64-secret: MjdhZjM0YTEyMWE1NDc0YjhlZmU0ZWZkMzY3MjRhMjI5ZmM5YTVhMTBjZDJjMDkyOWU3YmE4MjQ5OTJlZjg1ZmQyZTMwZjFjNjY0YTk3NjEwMmZlZmJhY2FiOTk5NWMzZDdkNDQ1YzViNjMyNjU1NGEyMDMwZGU0MjY4Mzk1NWI=
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+    metrics:
+        logs: # Reports metrics in the logs
+            enabled: true
+            report-frequency: 60 # in seconds
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
+
+valuation:
+    osUser:
+    ingestor:
+        ftpUrl: 34.73.153.124
+        ftpUser: jatodb
+        ftpPasswd: jatodb
+        ftpFrom: /home/jatodb/FULLHISTORY/DATABASES/TEXTFILESUTF8/SSCRO_CS2002_TextFiles.exe
+        ftpTo: /data/jatodb/SSCRO_CS2002_TextFiles.exe

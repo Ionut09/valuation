@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+        <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef> Model </th>
+        <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="body">
+        <th mat-header-cell *matHeaderCellDef> Body </th>
+        <td mat-cell *matCellDef="let element"> {{element.body}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fuelType">
+        <th mat-header-cell *matHeaderCellDef> Fuel Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.fuelType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="engineHp">
+        <th mat-header-cell *matHeaderCellDef> Engine HP </th>
+        <td mat-cell *matCellDef="let element"> {{element.engineHp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="engineLitres">
+        <th mat-header-cell *matHeaderCellDef> Engine Litres </th>
+        <td mat-cell *matCellDef="let element"> {{element.engineLitres}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="registeredVehicles">
+        <th mat-header-cell *matHeaderCellDef> Registered Vehicles </th>
+        <td mat-cell *matCellDef="let element"> {{element.registeredVehicles}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Year </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

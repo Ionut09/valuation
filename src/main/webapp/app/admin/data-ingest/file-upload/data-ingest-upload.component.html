@@ -1,0 +1,29 @@
+<div class="file-drop-area">
+    <div class="row">
+        <button
+            *ngIf="!showExcelLogo"
+            mat-stroked-button
+            class="col-4"
+            jhiTranslate="global.data-ingest.file-select">
+            Choose file
+        </button>
+
+        <button
+            *ngIf="showExcelLogo"
+            mat-stroked-button
+            class="col-4"
+            jhiTranslate="global.data-ingest.file-select-excel">
+            Choose file
+        </button>
+
+        <span class="file-msg col-8">
+            {{file ? file.name : 'global.data-ingest.file-drop' | translate }}
+        </span>
+
+        <img *ngIf="showAutovitLogo" class="autovit" src="../../../../content/images/logo/autovit.png" alt="Autovit.ro logo" />
+        <br>
+        <img *ngIf="showExcelLogo" class="excel" src="../../../../content/images/logo/excel-logo.png" alt="Autovit.ro logo" />
+    </div>
+    <input class="file-input" type="file">
+</div>
+<jhi-data-ingest-progress [progress]="progress"></jhi-data-ingest-progress>

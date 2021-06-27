@@ -1,0 +1,24 @@
+/* after changing this file run 'npm run webpack:build' */
+
+/***************************
+put Sass variables here:
+eg $input-color: red;
+****************************/
+// Override Boostrap variables
+@import 'bootstrap-variables';
+// Import Bootstrap source files from node_modules
+@import '~bootstrap/scss/bootstrap';
+
+/* jhipster-needle-scss-add-vendor JHipster will add new css style */
+
+// Material Design Theme
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Used by date-year picker in wizard - manual selection
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+
+// Chartist
+@import '~chartist/dist/chartist.css';
+
+// Chartist Tooltip Plugin
+@import '~chartist-plugin-tooltips-updated/dist/chartist-plugin-tooltip.css';

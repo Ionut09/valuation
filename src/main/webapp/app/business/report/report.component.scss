@@ -1,0 +1,36 @@
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 64px;
+    width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url('../../../content/images/logo/gt_motive.svg') no-repeat center center;
+    background-size: contain;
+}
+
+.btm-border {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+* {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
+    color-adjust: exact !important; /*Firefox*/
+}
+
+.printPageButton {
+    height: 60px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+@media print {
+    .printPageButton {
+        display: none;
+    }
+}

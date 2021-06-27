@@ -1,0 +1,50 @@
+<mat-horizontal-stepper
+    [linear]="isLinear"
+    (selectionChange)="stepChanged($event)">
+    <mat-step>
+        <ng-template matStepLabel>{{'wizard.stepper.make' | translate}}</ng-template>
+
+        <jhi-car-manufacturer (manufacturerSelected)="handleManufacturerSelection($event)"></jhi-car-manufacturer>
+
+        <div class="text-center">
+            <button mat-raised-button color="primary" matStepperNext jhiTranslate="wizard.search">Search</button>
+        </div>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>{{'wizard.stepper.model' | translate}}</ng-template>
+
+        <jhi-car-model
+            [state]="state"
+            (modelSelected)="triggerNextStep()">
+        </jhi-car-model>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>{{'wizard.stepper.body' | translate}}</ng-template>
+
+        <jhi-car-body
+            [state]="state"
+            (bodySelected)="triggerNextStep()">
+        </jhi-car-body>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>{{'wizard.stepper.generation' | translate}}</ng-template>
+
+        <jhi-car-generation
+            [state]="state"
+            (generationSelected)="triggerNextStep()">
+        </jhi-car-generation>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>{{'wizard.stepper.vehicle' | translate}}</ng-template>
+
+        <div>
+            <jhi-car-version
+                [state]="state"
+                (carSelected)="handleCarSelection($event)"></jhi-car-version>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

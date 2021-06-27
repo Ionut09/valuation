@@ -1,0 +1,3 @@
+sftp ro.gtm@ftp2.carspecs.jato.com:/FULLHISTORY/DATABASES/TEXTFILESUTF8/SSCRO/SSCRO_CS2002_TextFiles_UTF8.ZIP .
+sftp ro.gtm@ftp2.carspecs.jato.com:/FULLHISTORY/DATABASES/TEXTFILESUTF8/NSCRO/NSCRO_CS2002_TextFiles_UTF8.ZIP .
+sftp ro.gtm@ftp2.carspecs.jato.com:/FULLHISTORY/PHOTOS/COMPLETE/SSCRO/SSCRO-400.EXE .

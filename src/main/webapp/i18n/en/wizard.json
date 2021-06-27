@@ -1,0 +1,88 @@
+{
+    "wizard": {
+        "title": "Car identification wizard - GT Market Value",
+        "search": "Search",
+        "next": "Next",
+        "previous": "Back",
+        "select": "Select",
+        "no-data": "There is no data available! Please make sure that previous steps were completed successfully!",
+
+        "vin": {
+            "search": "Search a car",
+            "vin-number": "VIN Number",
+            "vin-search": "Search using VIN Query API (+1 Euro / search) and skip manual search!",
+            "vin-tooltip": "The search using VIN Query API shows directly all the optionals the searched car has from fabric!",
+            "vin-error": "VIN invalid! The code should be 17 characters length!",
+            "vin-query-error": "Oups! There was an error processing the VIN! Please try again!",
+
+            "manual-search-button": "Manual search",
+            "vin-search-button": "Search using VIN Query"
+        },
+
+        "stepper": {
+            "make": "Make",
+            "model": "Model",
+            "fuel": "Fuel",
+            "body": "Body",
+            "generation": "Generation",
+            "vehicle": "Vehicle"
+        },
+
+        "manufacturer": {
+            "select-make": "Select the manufacturer",
+            "make": "Car maker",
+            "fabrication-date": "Year & month of the fabrication",
+            "registration-date": "Year & month of the registration",
+            "registration-date-ask": "Please select the car registration date"
+        },
+
+        "model": {
+            "select-model": "Select the model"
+        },
+
+        "fuel": {
+            "select-fuel": "Select the fuel and transmission types",
+            "fuel": "Fuel",
+            "gearbox": "Gearbox",
+            "traction": "Traction",
+            "gearbox-tooltip": "Some transmission types are classified as manuals. For example: dual clutch man sequential"
+        },
+
+        "body": {
+            "select-body": "Select the body type",
+            "doors": "doors"
+        },
+
+        "generation": {
+            "select-generation": "Select the generation",
+            "doors": "doors",
+            "generation": "Generation"
+        },
+
+        "vehicle": {
+            "select-vehicle": "Select the car",
+            "filter": "Filter",
+
+            "make": "Make",
+            "model": "Model",
+            "version": "Version",
+            "trim": "Trim",
+            "model-year": "Year Model",
+            "fuel-type": "Fuel Type",
+            "transmission": "Transmission",
+            "power": "Power HP",
+            "doors": "Doors No",
+            "start-selling": "Start Selling",
+            "end-selling": "End Selling",
+            "price": "Price",
+
+            "popup": {
+                "review": "Please review the selected car!",
+                "cancel": "Select another car",
+                "continue": "Continue"
+            },
+
+            "no-vehicles": "There are no available cars for the selected criteria!"
+        }
+    }
+}

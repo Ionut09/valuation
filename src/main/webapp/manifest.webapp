@@ -1,0 +1,31 @@
+{
+  "name": "GT Valuation",
+  "short_name": "Valuation",
+  "icons": [
+        {
+            "src": "./content/icons/android-icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "./content/icons/android-icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "./content/icons/android-icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "./content/icons/android-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#e0e0e0",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

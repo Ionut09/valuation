@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-12 mb-5">
+        <h1>{{'wizard.body.select-body' | translate}}</h1>
+    </div>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+
+<div *ngIf="!state?.model?.model && dataLoaded">
+    <div class="alert alert-danger" role="alert">
+        {{'wizard.no-data' | translate}}
+    </div>
+</div>
+
+<div
+    *ngIf="state?.model?.model"
+    fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <div class="col-12" *ngIf="dataLoaded && bodies?.length === 0">
+        <div class="alert alert-primary" role="alert">
+            {{'wizard.vehicle.no-vehicles' | translate}}
+        </div>
+    </div>
+
+    <ng-container *ngFor="let body of bodies">
+        <mat-card class="model-card" fxFlex="0 1 calc(33.3%)">
+            <mat-card-header>
+                <mat-card-title>{{body.manufacturer}} {{body.model}}</mat-card-title>
+                <mat-card-subtitle>
+                    {{body.minPrice * 1.19 | currency: body.currency : 'symbol-narrow':'1.0-2'}} - {{body.maxPrice * 1.19 | currency: body.currency : 'symbol-narrow':'1.0-2'}} brut
+                </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image
+                 src="{{getImageUrl(body)}}"
+                 onError="this.src='../../../../../content/images/404/car-image-not-available.jpg';"
+                 alt="Car model image">
+            <mat-card-content>
+                <span style="margin-left: 16px;"><strong>{{body.body}}</strong> - {{body.doorsNo}} {{'wizard.body.doors' | translate}}</span>
+            </mat-card-content>
+            <mat-card-actions>
+                <button
+                    mat-stroked-button
+                    (click)="handleBodySelection(body)"
+                    jhiTranslate="wizard.select">
+                    Select
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+</div>

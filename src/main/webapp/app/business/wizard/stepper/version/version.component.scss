@@ -1,0 +1,32 @@
+/* Structure */
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-row:hover {
+    background-color: #c7dcff;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.icon-fuel {
+    background: url('../../../../../content/images/assets/icon-fuel.svg') 50% no-repeat;
+    height: 50px;
+}
+
+.icon-gearbox {
+    background: url('../../../../../content/images/assets/icon-gearbox.svg') 50% no-repeat;
+    height: 50px;
+}
+
+.icon-traction {
+    background: url('../../../../../content/images/assets/icon-traction.svg') 50% no-repeat;
+    height: 50px;
+}

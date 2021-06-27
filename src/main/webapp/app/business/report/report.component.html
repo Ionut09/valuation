@@ -1,0 +1,174 @@
+<mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+
+<div *ngIf="dataLoaded">
+    <div class="row">
+        <div class="col-6">
+            <div class="logo-img">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <h2 class="float-right font-weight-bold text-uppercase">Raport evaluare</h2>
+        </div>
+
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="row">
+        <div class="col-10">
+            <h1 class="mb-4" style="margin-left: -16px;">
+                {{data.vehicleDTO.manufacturer}} {{data.vehicleDTO.model}} {{data.vehicleDTO.version}} {{data.vehicleDTO.transmission}} {{data.vehicleDTO.modelYear}} , {{data.valuation.numberOfKilometers}} km
+            </h1>
+        </div>
+        <div class="col-2 float-right">
+            <button mat-raised-button color="primary" (click)="handleButton()" class="printPageButton">
+                <fa-icon [icon]="['fas', 'print']"></fa-icon>
+                Print Raport
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 pr-4">
+            <div class="row">
+                <div class="col alert alert-primary font-weight-bold text-uppercase">
+                    Specificații autovehicul
+                </div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Serie Șasiu</div>
+                <div class="col-8">{{data.valuation.vin != null ? data.valuation.vin : '-'}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Producător</div>
+                <div class="col-8">{{data.vehicleDTO.manufacturer}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Model</div>
+                <div class="col-8">{{data.vehicleDTO.model}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Versiune</div>
+                <div class="col-8">{{data.vehicleDTO.version}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Echipare</div>
+                <div class="col-8">{{data.vehicleDTO.trimLevel}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Combustibil</div>
+                <div class="col-8">{{data.vehicleDTO.fuelType}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Cutie de viteze</div>
+                <div class="col-8">{{data.vehicleDTO.transmission}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Cai Putere</div>
+                <div class="col-8">{{data.vehicleDTO.powerHP}} CP</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Caroserie</div>
+                <div class="col-8">{{data.vehicleDTO.body}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Număr uși</div>
+                <div class="col-8">{{data.vehicleDTO.noOfDoors}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Data fabricației</div>
+                <div class="col-8">{{data.valuation.fabricationDate | date:'MM/yyyy'}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Data primei înmatriculări</div>
+                <div class="col-8">{{data.valuation.registrationDate | date:'MM/yyyy'}}</div>
+            </div>
+        </div>
+        <div class="col-6">
+            <img src="{{getImageUrl(data)}}"
+                 onError="this.src='../../../content/images/404/car-image-not-available.jpg'" class="img-fluid"/>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-6 pr-4 mt-4">
+            <div class="row">
+                <div class="col alert alert-primary font-weight-bold text-uppercase">
+                    Detalii evaluare
+                </div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Nr. evaluare</div>
+                <div class="col-8">GTESTIMATE-{{data.valuation.id}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Data evaluării</div>
+                <div class="col-8">{{data.valuation.valuationDate | date:'dd-MM-yyyy'}}</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Preț mașină nouă</div>
+                <div class="col-8">{{data.valuation.priceAsNew * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Preț opționale extra</div>
+                <div class="col-8">{{data.valuation.extraOptionsPrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Preț total mașină nouă</div>
+                <div class="col-8">{{(data.valuation.priceAsNew * 1.19) + (data.valuation.extraOptionsPrice * 1.19) | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="row">
+                <div class="col alert alert-primary font-weight-bold text-uppercase">
+                    Valori estimate
+                </div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Trade-in Price</div>
+                <div class="col-8">{{tradeInPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Offer Price</div>
+                <div class="col-8">{{offerPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+            <div class="row btm-border">
+                <div class="col-4 font-weight-bold">Retail Price</div>
+                <div class="col-8">{{retailPrice | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} brut</div>
+            </div>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-12 alert alert-primary mt-4 font-weight-bold text-uppercase">
+            Echipamente standard
+        </div>
+        <div class="col-12">
+            <ul class="row">
+                <li class="col-6 pr-4" *ngFor="let stdOption of stdOptions">{{stdOption.content}}</li>
+            </ul>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-12 alert alert-primary mt-4 font-weight-bold text-uppercase">
+            Echipamente opționale extra (prețuri brute)
+        </div>
+        <div class="col-12">
+            <ul class="row">
+                <li class="col-6 pr-4" *ngFor="let extraOption of extraOptions"><strong>[{{extraOption.optionCode}}]</strong> {{extraOption.optionText}} - {{extraOption.optionPrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <button mat-raised-button color="primary" (click)="handleButton()" class="printPageButton" style="margin: 32px 0 0 -16px;">
+                <fa-icon [icon]="['fas', 'print']"></fa-icon>
+                Print Raport
+            </button>
+        </div>
+    </div>
+
+</div>

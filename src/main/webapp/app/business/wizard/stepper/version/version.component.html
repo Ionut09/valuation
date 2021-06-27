@@ -1,0 +1,155 @@
+ <div class="row">
+    <div class="col-12 mb-5">
+        <h1>{{'wizard.vehicle.select-vehicle' | translate }}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-4 pb-4">
+                <div class="text-center">
+                    <div class="icon-fuel mb-2"></div>
+                    <p><strong>{{'wizard.fuel.fuel' | translate}}</strong></p>
+                    <ul class="list-group text-left">
+                        <li class="list-group-item" *ngFor="let fuelType of distinctFuels">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input"
+                                       [id]="fuelType"
+                                       (change)="handleFuelCheck(fuelType)">
+                                <label class="custom-control-label" [for]="fuelType">{{fuelType}}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 pb-4">
+                <div class="text-center">
+                    <div class="icon-gearbox mb-2"></div>
+                    <p><strong>{{'wizard.fuel.gearbox' | translate}}</strong></p>
+                    <ul class="list-group text-left">
+                        <li class="list-group-item" *ngFor="let transmission of distinctTransmissions">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input"
+                                       [id]="transmission"
+                                       (change)="handleTransmissionCheck(transmission)">
+                                <label class="custom-control-label" [for]="transmission" matTooltip="{{'wizard.fuel.gearbox-tooltip' | translate}}" [matTooltipDisabled]="transmission !== 'Manual'">{{formatTransmissionText(transmission)}}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 pb-4">
+                <div class="text-center">
+                    <div class="icon-traction mb-2"></div>
+                    <p><strong>{{'wizard.fuel.traction' | translate}}</strong></p>
+                    <ul class="list-group text-left">
+                        <li class="list-group-item" *ngFor="let drivenWheels of distinctDrivenWheels">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input"
+                                       [id]="drivenWheels"
+                                       (change)="handleDrivenWheelsCheck(drivenWheels)">
+                                <label class="custom-control-label" [for]="drivenWheels">{{drivenWheels}}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'wizard.vehicle.filter' | translate}}">
+        </mat-form-field>
+
+        <mat-progress-bar mode="indeterminate" *ngIf="!dataLoaded"></mat-progress-bar>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="Make">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.make' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Model">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.model' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Version">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.version' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Trim">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.trim' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.trimLevel}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Model Year">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.model-year' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{+element.modelYear}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Fuel Type">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.fuel-type' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.fuelType}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Transmission">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.transmission' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{formatUpperLetter(element.transmissionDescription, element)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Power">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.power' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.powerHP}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="KW">
+                <th mat-header-cell *matHeaderCellDef> KW </th>
+                <td mat-cell *matCellDef="let element"> {{element.kw}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CMC">
+                <th mat-header-cell *matHeaderCellDef> CMC </th>
+                <td mat-cell *matCellDef="let element"> {{element.cc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Doors">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.doors' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.noOfDoors}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Start Selling">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.start-selling' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{parseDate(element.startSellingDate)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="End Selling">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.end-selling' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.endSellingDate === '99991231' ? 'ON GOING' : parseDate(element.endSellingDate)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Price">
+                <th mat-header-cell *matHeaderCellDef> {{'wizard.vehicle.price' | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.basePrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row
+                *matRowDef="let row; columns: displayedColumns;"
+                (click)="handleCarSelection(row)"></tr>
+        </table>
+        <br>
+        <div class="col-12" *ngIf="dataLoaded && dataSource?.data?.length === 0">
+            <div class="alert alert-primary" role="alert">
+                {{'wizard.vehicle.no-vehicles' | translate}}
+            </div>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

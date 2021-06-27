@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.valuation.title}">New valuation created</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+</head>
+<body>
+<p th:text="#{email.valuation.greeting(${user.login})}">
+    Dear
+</p>
+<p th:text="#{email.valuation.text1}">
+    A new car valuation was created, please click on the URL below to check the results:
+</p>
+<p>
+    <a th:with="url=(@{|${baseUrl}/#/valuation/${valuation.id}|})" th:href="${url}"
+       th:text="${url}">Valuation link</a>
+</p>
+<p>
+    <span th:text="#{email.valuation.text2}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">GTMOTIVE Valuation Platform.</em>
+    <br />
+    <br />
+    <br />
+    <em>If you have any question, feel free to reach us at: valuation@gtmotive.ro</em>
+</p>
+</body>
+</html>

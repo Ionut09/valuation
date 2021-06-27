@@ -1,0 +1,128 @@
+<block-ui>
+<div *ngIf="!state?.car || displayError">
+    <div class="alert alert-danger" role="alert">
+        There was an error with the wizard or the VIN query!
+        <br>
+        Please contact the administrators: <a href = "mailto: helpedesk@gtestimate.ro">helpedesk@gtestimate.ro</a>
+    </div>
+</div>
+
+<div *ngIf="state?.car">
+    <div class="row">
+        <div class="col-12 mb-5">
+            <h1>{{state.car.manufacturer}} {{state.car.model}} {{state.car.version}}</h1>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="container-fluid">
+                <div class="row mt-3 mb-3">
+                    <div class="col nopadding">
+                        <h5 class="text-left">{{'options.list-price' | translate}} :</h5>
+                        <h5 class="text-left">{{'options.extra-options' | translate }} :</h5>
+                        <h5 class="text-left">{{'options.total-value' | translate}} :</h5>
+                        <br>
+                    </div>
+                    <div class="col nopadding">
+                        <h5 class="text-left"><strong>{{state.car.basePrice * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</strong> brut</h5>
+                        <h5 class="text-left"><strong>{{extraOptionsValue * 1.19 | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</strong></h5>
+                        <h5 class="text-left"><strong>{{(state.car.basePrice * 1.19) + (extraOptionsValue * 1.19) | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}</strong> brut</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col-md-12">
+                        <mat-label>{{'options.km' | translate}}</mat-label>
+                        <input matInput type="number" [(ngModel)]="numberOfKms" min="3">
+                        <mat-icon matSuffix>directions_car</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="invalidKmNo" class="alert alert-danger" role="alert" style="margin-left: 15px;">
+                        Numărul de kilometri trebuie sa fie minim 3!
+                    </div>
+
+                    <mat-form-field appearance="outline" class="col-md-12" matTooltip="{{'options.negative-values' | translate}}" [matTooltipPosition]="'above'">
+                        <mat-label>{{'options.tires' | translate}}</mat-label>
+                        <input matInput type="number" [(ngModel)]="tiresAttrition" max="-1">
+                        <mat-icon matSuffix>album</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md-12" matTooltip="{{'options.negative-values' | translate}}" [matTooltipPosition]="'above'">
+                        <mat-label>{{'options.loss' | translate}}</mat-label>
+                        <input matInput type="number" [(ngModel)]="loss" max="-1">
+                        <mat-icon matSuffix>warning</mat-icon>
+                    </mat-form-field>
+
+                    <mat-checkbox class="col-md-12" [(ngModel)]="gpl">{{'options.gpl' | translate}}</mat-checkbox>
+
+                </div>
+                <br>
+                <div class="row">
+                    <button class="eval-button" mat-raised-button color="primary" (click)="openConfirmation()">
+                        <fa-icon [icon]="['fas', 'chart-line']"></fa-icon>
+                        {{'options.evaluate' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="text-center">
+                <img src="{{getImageUrl(state.body)}}"
+                     onError="this.src='../../../../content/images/404/car-image-not-available.jpg';"
+                     alt="Car model image">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 pb-4">
+            <h4>{{'options.standardOptions' | translate}}</h4>
+            <mat-progress-bar mode="indeterminate" *ngIf="!stdDataLoaded"></mat-progress-bar>
+            <br>
+            <div *ngIf="extraOptions?.length == 0">
+                No standard options available!
+            </div>
+            <form [formGroup]="stdOptionsFormGroup">
+                <ng-container formArrayName="standardOptions">
+                    <div *ngFor="let stdOption of standardOptions; let i = index" >
+                        <mat-checkbox
+                            (click)="$event.preventDefault()"
+                            [value]="stdOption"
+                            [checked]="true"
+                            color="primary"
+                            readonly>
+                            {{stdOption.content}}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </form>
+        </div>
+
+        <div class="col-md-6 pb-4">
+            <h4>{{'options.extraOptions' | translate}}</h4>
+            <mat-progress-bar mode="indeterminate" *ngIf="!extraDataLoaded"></mat-progress-bar>
+            <br>
+            <div *ngIf="extraOptions?.length == 0">
+                No extra options available!
+            </div>
+            <form [formGroup]="extraOptionsFormGroup">
+                <ng-container formArrayName="extraOptions">
+                    <div *ngFor="let extraOption of extraOptions; let i = index" >
+                        <mat-checkbox
+                            (change)="onExtraChange($event, extraOption)"
+                            color="primary"
+                            [value]="extraOption"
+                            [checked]="extraOption.checked"
+                            [disabled]="extraOption.disabled">
+                            <strong>[{{extraOption.optionCode}}]</strong> {{extraOption.description}} - {{extraOption.price | currency: 'EUR' : 'symbol-narrow':'1.0-2'}}
+                            <span class="badge badge-success" *ngIf="extraOption.included">Inclusă în alt pachet</span>
+                            <span class="badge badge-secondary" *ngIf="extraOption.excluded">Indisponibilă</span>
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </form>
+        </div>
+    </div>
+</div>
+</block-ui>
